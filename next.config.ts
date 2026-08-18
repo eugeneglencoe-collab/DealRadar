@@ -1,1 +1,1 @@
-import type { NextConfig } from 'next';\n\nconst config: NextConfig = {\n  reactStrictMode: true,\n  output: 'export',\n  trailingSlash: false,\n};\n\nexport default config;\n
+import type { NextConfig } from 'next';\n\nconst config: NextConfig = {\n  reactStrictMode: true,\n};\n\nexport default config;\n
