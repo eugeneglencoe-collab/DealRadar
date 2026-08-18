@@ -24,7 +24,6 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
       ...prev,
       [name]: value,
     }));
-    // Clear error for this field on change
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -38,7 +37,6 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
     setSubmitError('');
     setErrors({});
 
-    // Validation
     const newErrors: Record<string, string> = {};
 
     if (!formData.url.trim()) {
@@ -64,7 +62,6 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
       return;
     }
 
-    // Submit
     setLoading(true);
     try {
       await submitForm(formData);
@@ -81,7 +78,7 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label htmlFor="url" className="block text-sm font-semibold text-gray-900 mb-2">
           URL du produit
@@ -92,8 +89,8 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
           name="url"
           value={formData.url}
           onChange={handleChange}
-          placeholder="https://example.com/produit"
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          placeholder="https://amazon.fr/RTX..."
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base ${
             errors.url ? 'border-red-500' : 'border-gray-300'
           }`}
           disabled={loading}
@@ -119,7 +116,7 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
           placeholder="750.00"
           step="0.01"
           min="0"
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base ${
             errors.priceTarget ? 'border-red-500' : 'border-gray-300'
           }`}
           disabled={loading}
@@ -131,7 +128,7 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
 
       <div>
         <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-          Adresse e-mail
+          Votre e-mail
         </label>
         <input
           type="email"
@@ -140,7 +137,7 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
           value={formData.email}
           onChange={handleChange}
           placeholder="vous@example.com"
-          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base ${
             errors.email ? 'border-red-500' : 'border-gray-300'
           }`}
           disabled={loading}
@@ -159,10 +156,14 @@ export function UrlForm({ onSubmitted }: UrlFormProps) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition-colors duration-200 text-base"
       >
-        {loading ? 'Envoi en cours...' : 'Soumettre'}
+        {loading ? 'Envoi en cours…' : 'Me prévenir à mon prix'}
       </button>
+
+      <p className="text-xs text-gray-500 text-center">
+        Aucune carte bancaire requise. Pas de spam.
+      </p>
     </form>
   );
 }
